@@ -54,6 +54,10 @@ namespace SistemaWeb.Models
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Nombre Usuario")]
+        public string UserName { get; set; }
+
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
@@ -64,6 +68,14 @@ namespace SistemaWeb.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Rol Usuario")]
+        public string UserRoles { get; set; }
+
+        [Required]
+        [Display(Name = "Nombre Usuario")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Correo electrónico")]
