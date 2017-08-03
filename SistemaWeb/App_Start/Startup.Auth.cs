@@ -54,9 +54,9 @@ namespace SistemaWeb
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "309740976098017",
+               appSecret: "ec01ea5923f82a086aef9c54e64fbd59");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

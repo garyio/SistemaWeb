@@ -39,13 +39,17 @@
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar">Inicio</span>
-                    <span class="icon-bar">Acerca de</span>
-                    <span class="icon-bar">Contacto</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        @Html.Partial("_LoginPartial")
+                       <li>
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                           </a> 
+                        @Html.Partial("_LoginPartial") 
+                       </li> 
                     </ul>
                 </div>
             </nav>
@@ -61,22 +65,31 @@
                         <img src="~/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
+                        <p> @User.Identity.Name </p>
                         @*<a href="#"><i class="fa fa-circle text-success"></i> Online</a>*@
                     </div>
                 </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li class="header">MENU</li>
-                    <li>
+                    
+                    <li class="treeview active">
                         <a href="#">
-                            <span>Inventario</span>
+                            <i class="fa fa-dashboard"></i><span>MODULOS</span>
+
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
+                        <ul class="treeview-menu">
+                            <li>@Html.ActionLink("Inventario", "Index", "Home")</li>
+
+                        </ul>
                     </li>
                     <li class="treeview active">
                         <a href="#">
-                            <span>General</span>
-                            
+                            <span>GENERAL</span>
+
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -88,7 +101,24 @@
 
                         </ul>
                     </li>
-                    
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <li class="treeview active">
+                            <a href="#">
+                                <span>ADMINISTRADOR</span>
+
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                                <li>@Html.ActionLink("Roles", "Index", "Role")</li>
+
+                            </ul>
+                        </li>
+                    }
+
                 </ul>
             </section>
             <!-- /.sidebar -->
@@ -100,7 +130,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    @ViewBag.Title - Mi aplicación ASP.NET
+                    @ViewBag.Title
                 </h1>
 
             </section>
@@ -109,7 +139,7 @@
                 <!-- Default box -->
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Title</h3>
+                        
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                                 <i class="fa fa-minus"></i>
@@ -131,32 +161,32 @@
 
         <div class="control-sidebar-bg"></div>
 
-                <footer class="main-footer">
-                    <div class="pull-right hidden-xs">
-                        <b>Version</b> 1.0
-                    </div>
-                    <strong>Copyright &copy; @DateTime.Now.Year - Zunoro.</strong> All rights
-                    reserved.
-                </footer>
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 1.0
             </div>
-            <!-- /.wrapper -->
-            <!-- ./wrapper -->
-            <!-- jQuery 2.2.3 -->
-            <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
-            <!-- Bootstrap 3.3.6 -->
-            <script src="~/bootstrap/js/bootstrap.min.js"></script>
-            <!-- SlimScroll -->
-            <script src="~/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-            <!-- FastClick -->
-            <script src="~/plugins/fastclick/fastclick.js"></script>
-            <!-- AdminLTE App -->
-            <script src="~/dist/js/app.min.js"></script>
-            <!-- AdminLTE for demo purposes -->
-            <script src="~/dist/js/demo.js"></script>
+            <strong>Copyright &copy; @DateTime.Now.Year - Zunoro.</strong> All rights
+            reserved.
+        </footer>
+    </div>
+    <!-- /.wrapper -->
+    <!-- ./wrapper -->
+    <!-- jQuery 2.2.3 -->
+    <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="~/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/dist/js/demo.js"></script>
 
     @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)*@
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
 
     @RenderSection("scripts", required: false)
 </body>

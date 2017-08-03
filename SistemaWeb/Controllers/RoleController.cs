@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Store.Controllers
 {
+    [Authorize]
     public class RoleController : Controller
     {
         ApplicationDbContext context;
@@ -51,7 +52,7 @@ namespace Store.Controllers
                 var user = User.Identity;
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 var s = UserManager.GetRoles(user.GetUserId());
-                if (s[0].ToString() == "Admin")
+                if (s[0].ToString() == "Administrador")
                 {
                     return true;
                 }

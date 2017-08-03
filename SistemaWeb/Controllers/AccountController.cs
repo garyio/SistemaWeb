@@ -171,7 +171,7 @@ namespace SistemaWeb.Controllers
                     return RedirectToAction("Index", "Users");
                 }
 
-                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Administrador"))
                                           .ToList(), "Name", "Name");
                 AddErrors(result);
             }

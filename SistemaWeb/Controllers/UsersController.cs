@@ -20,7 +20,7 @@ namespace Store.Controllers
                 ApplicationDbContext context = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 var s = UserManager.GetRoles(user.GetUserId());
-                if (s[0].ToString() == "Admin")
+                if (s[0].ToString() == "Administrador")
                 {
                     return true;
                 }
@@ -31,6 +31,7 @@ namespace Store.Controllers
             }
             return false;
         }
+
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)

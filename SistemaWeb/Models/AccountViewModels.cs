@@ -48,10 +48,10 @@ namespace SistemaWeb.Models
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "Correo electrónico")]
-        [EmailAddress]
-        public string Email { get; set; }
+        //[Required]
+        //[Display(Name = "Correo electrónico")]
+        //[EmailAddress]
+        //public string Email { get; set; }
 
         [Required]
         [Display(Name = "Nombre Usuario")]
