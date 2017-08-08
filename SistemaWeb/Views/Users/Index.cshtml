@@ -1,17 +1,42 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model IEnumerable<SistemaWeb.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Users";
 }
 
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Usuarioss</h3>
+        @*<div class="box-tools">
+                @Html.ActionLink("Click to Create New Role", "Create", "Role")
+            </div>*@
+    </div>
+    <div class="box-body table-responsive no-padding">
+        <table id="tbrole" class="table table-hover">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>Role Name</th>
+                <th>User Actions</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.userRole)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Lock User", "", new { Id = item.Id })
+                        @*@Html.ActionLink("Delete", "Delete", new { Id = item.Id })*@
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
 
-
-@if (ViewBag.displayMenu == "Yes")
-{
-    <h1>Welcome Admin. Now you can create user Role.</h1>
-    <h3>
-        <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
-    </h3>
-}
-else
-{
-    <h2>  Bienvenido <strong>@ViewBag.Name</strong>  </h2>
-}

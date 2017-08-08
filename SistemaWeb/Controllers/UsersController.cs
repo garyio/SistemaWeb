@@ -9,9 +9,16 @@ using System.Web.Mvc;
 
 namespace Store.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrador")]
     public class UsersController : Controller
     {
+        ApplicationDbContext context;
+
+        public UsersController()
+        {
+            context = new ApplicationDbContext();
+        }
+
         public Boolean isAdminUser()
         {
             if (User.Identity.IsAuthenticated)
@@ -32,32 +39,47 @@ namespace Store.Controllers
             return false;
         }
 
+
+
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
+            //if (User.Identity.loc)
+                //{
+                //    var user = User.Identity;
+                //    ViewBag.Name = user.Name;
+                //    //	ApplicationDbContext context = new ApplicationDbContext();
+                //    //	var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+                //    //var s=	UserManager.GetRoles(user.GetUserId());
+                //    ViewBag.displayMenu = "No";
+
+                //    if (isAdminUser())
+                //    {
+                //        ViewBag.displayMenu = "Yes";
+                //    }
+                //    return View();
+                //}
+                //else
+                //{
+                //    ViewBag.Name = "Not Logged IN";
+                //}
+
+                if (User.Identity.IsAuthenticated)
             {
-                var user = User.Identity;
-                ViewBag.Name = user.Name;
-                //	ApplicationDbContext context = new ApplicationDbContext();
-                //	var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-                //var s=	UserManager.GetRoles(user.GetUserId());
-                ViewBag.displayMenu = "No";
-
-                if (isAdminUser())
+                if (!isAdminUser())
                 {
-                    ViewBag.displayMenu = "Yes";
+                    return RedirectToAction("Index", "Home");
                 }
-                return View();
             }
             else
             {
-                ViewBag.Name = "Not Logged IN";
+                return RedirectToAction("Index", "Home");
             }
 
 
-            return View();
-
+            var Users = context.Users.ToList();
+            return View(Users);
 
         }
     }

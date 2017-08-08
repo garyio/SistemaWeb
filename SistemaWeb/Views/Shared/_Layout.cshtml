@@ -29,10 +29,10 @@
         <header class="main-header">
             <!-- Logo -->
             <a href="#" class="logo">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>Zn</b></span>
+                <!-- mini logo for sidebar mini 50x50 pixels -->                
+                <span class="logo-mini"><b>Zn</b>&nbsp;<span class="glyphicon glyphicon-shopping-cart" style="color:white"></span></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Zunoro</b></span>
+                <span class="logo-lg"><b>Zunoro</b>&nbsp;<span class="glyphicon glyphicon-shopping-cart" style="color:white"></span></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -45,11 +45,9 @@
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                       <li>
-                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                           </a> 
-                        @Html.Partial("_LoginPartial") 
-                       </li> 
+                        <li>
+                            @Html.Partial("_LoginPartial")
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -62,58 +60,86 @@
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="~/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true" style="color:white"></span>
                     </div>
                     <div class="pull-left info">
-                        <p> @User.Identity.Name </p>
-                        @*<a href="#"><i class="fa fa-circle text-success"></i> Online</a>*@
+                        <p>
+                            @if (string.IsNullOrEmpty(User.Identity.Name))
+                            { <span>Anonimo</span> }
+                            else
+                            { @User.Identity.Name}
                     </div>
                 </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li class="header">MENU</li>
+
+                    <li class="treeview active">
+                        <a href="#">
+
+                            <i class="glyphicon glyphicon-cog" style="color:white"></i><span>MODULOS</span>
+
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            
+                            <li>
+                                <span class="glyphicon glyphicon-tag" style="color:white"></span>                                
+                                <span class="glyphicon-class">&nbsp;&nbsp;@Html.ActionLink("Inventario", "Index", "Home")</span>
+                            </li>
+                            
+
+                        </ul>
+                    </li>
+                    <li class="treeview active">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-th" style="color:white"></i><span>GENERAL</span>
+
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <span class="glyphicon glyphicon-home" style="color:white"></span>
+                                <span>&nbsp;&nbsp;@Html.ActionLink("Inicio", "Index", "Home")</span>
+                            </li>
+
+                            <li>
+                                <span class="glyphicon glyphicon-info-sign" style="color:white"></span>
+                                <span>&nbsp;&nbsp;@Html.ActionLink("Acerca de", "About", "Home")</span>
+                            </li>                            
+                            <li>
+                                <span class="glyphicon glyphicon-envelope" style="color:white"></span>
+                                <span>&nbsp;&nbsp;@Html.ActionLink("Contacto", "Contact", "Home")</span>
+                            </li>
+                            
+
+                        </ul>
+                    </li>
+
                     
-                    <li class="treeview active">
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i><span>MODULOS</span>
-
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li>@Html.ActionLink("Inventario", "Index", "Home")</li>
-
-                        </ul>
-                    </li>
-                    <li class="treeview active">
-                        <a href="#">
-                            <span>GENERAL</span>
-
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-
-                        </ul>
-                    </li>
                     @if (User.IsInRole("Administrador"))
                     {
                         <li class="treeview active">
                             <a href="#">
-                                <span>ADMINISTRADOR</span>
+                                 <i class="glyphicon glyphicon-fire" style="color:white"></i><span>ADMINISTRADOR</span>
 
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                                <li>@Html.ActionLink("Roles", "Index", "Role")</li>
+                                <li>
+                                    <span class="glyphicon glyphicon-minus" style="color:white"></span>
+                                    <span>&nbsp;&nbsp;@Html.ActionLink("Users", "Index", "Users")</span>
+                                </li>
+                                <li>
+                                    <span class="glyphicon glyphicon-minus" style="color:white"></span>
+                                    <span>&nbsp;&nbsp;@Html.ActionLink("Roles", "Index", "Role")</span>
+                                </li>                                                              
 
                             </ul>
                         </li>
@@ -139,7 +165,7 @@
                 <!-- Default box -->
                 <div class="box">
                     <div class="box-header with-border">
-                        
+
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                                 <i class="fa fa-minus"></i>
