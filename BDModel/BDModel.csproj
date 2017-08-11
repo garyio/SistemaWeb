@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articulos.cs">
+      <DependentUpon>SistemaWeb.tt</DependentUpon>
+    </Compile>
     <Compile Include="AspNetRoles.cs">
       <DependentUpon>SistemaWeb.tt</DependentUpon>
     </Compile>
@@ -63,11 +66,18 @@
     <Compile Include="AspNetUsers.cs">
       <DependentUpon>SistemaWeb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Categorias.cs">
+      <DependentUpon>SistemaWeb.tt</DependentUpon>
+    </Compile>
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>SistemaWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityObjectExtension.cs" />
+    <Compile Include="Modelo\Categorias.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedor.cs">
+      <DependentUpon>SistemaWeb.tt</DependentUpon>
+    </Compile>
     <Compile Include="SistemaWeb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,6 +94,12 @@
       <DependentUpon>SistemaWeb.edmx</DependentUpon>
     </Compile>
     <Compile Include="SistemaWebEntities.cs" />
+    <Compile Include="Subcategoria.cs">
+      <DependentUpon>SistemaWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnidadMedida.cs">
+      <DependentUpon>SistemaWeb.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="SistemaWeb.edmx">
@@ -113,6 +129,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

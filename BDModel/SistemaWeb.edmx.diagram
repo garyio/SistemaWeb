@@ -13,6 +13,15 @@
         <AssociationConnector Association="SistemaWebModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaWebModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaWebModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SistemaWebModel.Articulos" Width="1.5" PointX="7.875" PointY="7" />
+        <EntityTypeShape EntityType="SistemaWebModel.Categorias" Width="1.5" PointX="3.375" PointY="8" />
+        <EntityTypeShape EntityType="SistemaWebModel.Proveedor" Width="1.5" PointX="5.625" PointY="14" />
+        <EntityTypeShape EntityType="SistemaWebModel.Subcategoria" Width="1.5" PointX="5.625" PointY="7.75" />
+        <EntityTypeShape EntityType="SistemaWebModel.UnidadMedida" Width="1.5" PointX="5.625" PointY="11.375" />
+        <AssociationConnector Association="SistemaWebModel.FK_Productos_Proveedor" />
+        <AssociationConnector Association="SistemaWebModel.FK_Productos_Subcategoria" />
+        <AssociationConnector Association="SistemaWebModel.FK_Productos_UnidadMedida" />
+        <AssociationConnector Association="SistemaWebModel.FK_Subcategoria_Categorias" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

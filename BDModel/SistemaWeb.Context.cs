@@ -30,5 +30,10 @@ namespace BDModel
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Articulos> Articulos { get; set; }
+        public virtual DbSet<Categorias> Categorias { get; set; }
+        public virtual DbSet<Proveedor> Proveedor { get; set; }
+        public virtual DbSet<Subcategoria> Subcategoria { get; set; }
+        public virtual DbSet<UnidadMedida> UnidadMedida { get; set; }
     }
 }
