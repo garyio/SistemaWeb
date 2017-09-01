@@ -18,7 +18,9 @@ namespace BDModel
         public int Id { get; set; }
         [Required]
         public string Nombre { get; set; }
-        [Required]
+
+        [Display(Name = "Estatus")]
+        [Required(ErrorMessage = "Favor de introducir {0}")]
         public bool Activo { get; set; }
     }
 }

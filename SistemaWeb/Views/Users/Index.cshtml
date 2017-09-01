@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<SistemaWeb.Models.ApplicationUser>
 @{
-    ViewBag.Title = "Users";
+    ViewBag.Title = "List of Users";
 }
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Usuarioss</h3>
+        @*<h3 class="box-title">Usuarioss</h3>*@
         @*<div class="box-tools">
                 @Html.ActionLink("Click to Create New Role", "Create", "Role")
             </div>*@
@@ -13,7 +13,7 @@
     <div class="box-body table-responsive no-padding">
         <table id="tbrole" class="table table-hover">
             <tr>
-                <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                <th>@*@Html.DisplayNameFor(model => model.UserName)*@User Name</th>
                 <th>@Html.DisplayNameFor(model => model.Email)</th>
                 <th>Role Name</th>
                 <th>User Actions</th>

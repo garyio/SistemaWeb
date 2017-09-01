@@ -1,0 +1,155 @@
+﻿@model BDModel.Articulos
+
+@{
+    ViewBag.Title = "Imagenes";
+    Layout = null;
+}
+
+@using (Html.BeginForm("UploadFiles", "Articulos", FormMethod.Post, new { enctype = "multipart/form-data", @id = "uploadForm" }))
+{
+    @*@Html.AntiForgeryToken()*@
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"> @ViewBag.Title</h4>
+    </div>
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <br />
+
+        <div class="form-group">
+            <label for="files" class="control-label col-md-4">Seleccionar Archivos: </label>
+            <div class="col-md-8">
+                <input type="file" id="files" name="files" value="" accept="image/*" multiple="multiple" />
+            </div>
+        </div>
+
+        <table class="table">
+            <tr>
+                <th>
+                    Image
+                </th>
+                <th>
+                    Date uploaded
+                </th>
+                <th>
+                    Actions
+                </th>
+
+            </tr>
+            @foreach (FileInfo file in ViewBag.articulosHTML)
+                {
+                    string fullPath = "/ImagenesArticulos/Articulo_" + Model.Id + "/" + file.Name;
+                <tr>
+                    @*<td>
+                            <input type="radio" class="radio" id='@file.Name' name="optradio">
+                        </td>*@
+                    <td>
+                        <img src="@fullPath" alt="@file.Name" style="width:100px;height:75px;">
+                    </td>
+                    <td>
+                        @file.CreationTime.ToShortDateString()
+                    </td>
+                    <td>
+                        <button type="button" name="delete" id="delete" class="delete" data-id="@file.Name">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+
+                    </td>
+                </tr>
+            }
+        </table>
+
+
+        <hr />
+
+        <div class="form-group">
+            <input id="save" type="submit" value="Save" class="btn btn-primary btn-lg btn-block" />
+        </div>
+
+    </div>
+
+}
+
+@*<script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="~/plugins/jQueryUI/jquery-ui.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+
+<script>
+    $(document).ready(function () {
+        $(function () {
+            jQuery.validator.unobtrusive.parse();
+            jQuery.validator.unobtrusive.parse("form");
+        });
+
+        $(function () {
+            $("#save").click(function () {
+                debugger;
+                if ($("#files").val() == '') {
+                    swal(
+                      '',
+                      'No hay Archivos Seleccionados.!',
+                      'warning'
+                    )
+                    return false;
+                }
+            });
+        });
+
+        $(function () {
+            $(".delete").click(function () {
+                debugger;
+                var $buttonClicked = $(this);
+                var filename = $buttonClicked.attr('data-id');
+
+                var data = {
+                    id: '@Html.Raw(Json.Encode(Model.Id))',
+                    filename: $buttonClicked.attr('data-id')
+                };
+
+                var json = JSON.stringify(data);
+                console.log(json);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Articulos/deleteFile",
+                    contentType: "application/json; charset=utf-8",
+                    data: json,
+                    datatype: "json",
+                    success: function (data) {
+                        debugger;
+                        var tr = $buttonClicked.closest('tr');
+                        swal(
+                          'Imagen eliminada con Exito.!',
+                          '',
+                          'info'
+                        )
+                        tr.remove();
+                    },
+                    error: function (data) {
+                        debugger;
+                        swal(
+                          'Error al eliminar la Imagen.',
+                          '',
+                          'error'
+                        )
+                    }
+                });
+            });
+        });
+    });
+
+</script>
+
+
+
+
+
+
+
+
+
+

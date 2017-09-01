@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<BDModel.Proveedor>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "List of Suppliers";
 }
-
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -41,7 +39,7 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Activo)
+            @Html.DisplayFor(modelItem => item.Activo.Value)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RFC)

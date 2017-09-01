@@ -26,6 +26,11 @@ namespace SistemaWeb
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.IgnoreList.Clear();
+            bundles.IgnoreList.Ignore("*.intellisense.js");
+            bundles.IgnoreList.Ignore("*-vsdoc.js");
+            bundles.IgnoreList.Ignore("*.debug.js", OptimizationMode.WhenEnabled);
         }
     }
 }

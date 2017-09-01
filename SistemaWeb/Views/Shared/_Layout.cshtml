@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Zunoro Shop</title>
+    <!-- Sweet Alerts -->
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -14,6 +16,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/dist/css/AdminLTE.min.css">
+    <!-- JQuery UI CSS -->
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <!-- Style para Bloquear Formulario e icono cargando de ajax -->
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
+
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="~/dist/css/skins/_all-skins.min.css">
@@ -28,7 +35,7 @@
     <div class="wrapper">
         <header class="main-header">
             <!-- Logo -->
-            <a href="#" class="logo">
+            <a href="~/Home/" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->                
                 <span class="logo-mini"><b>Zn</b>&nbsp;<span class="glyphicon glyphicon-shopping-cart" style="color:white"></span></span>
                 <!-- logo for regular state and mobile devices -->
@@ -134,12 +141,28 @@
                             <ul class="treeview-menu">
                                 <li>
                                     <span class="glyphicon glyphicon-minus" style="color:white"></span>
-                                    <span>&nbsp;&nbsp;@Html.ActionLink("Users", "Index", "Users")</span>
+                                    <span>&nbsp;&nbsp;@Html.ActionLink("Usuarios", "Index", "Users")</span>
                                 </li>
                                 <li>
                                     <span class="glyphicon glyphicon-minus" style="color:white"></span>
                                     <span>&nbsp;&nbsp;@Html.ActionLink("Roles", "Index", "Role")</span>
-                                </li>                                                              
+                                </li>          
+                                <li>
+                                    <span class="glyphicon glyphicon-minus" style="color:white"></span>
+                                    <span>&nbsp;&nbsp;@Html.ActionLink("Categorias", "Index", "Categorias")</span>
+                                </li>      
+                                <li>
+                                    <span class="glyphicon glyphicon-minus" style="color:white"></span>
+                                    <span>&nbsp;&nbsp;@Html.ActionLink("Subcategorias", "Index", "Subcategorias")</span>
+                                </li>  
+                                <li>
+                                    <span class="glyphicon glyphicon-minus" style="color:white"></span>
+                                    <span>&nbsp;&nbsp;@Html.ActionLink("Unidad Medidas", "Index", "UnidadMedida")</span>
+                                </li>   
+                                <li>
+                                    <span class="glyphicon glyphicon-minus" style="color:white"></span>
+                                    <span>&nbsp;&nbsp;@Html.ActionLink("Proveedores", "Index", "Proveedor")</span>
+                                </li>                                        
 
                             </ul>
                         </li>
@@ -154,18 +177,18 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
+            @*<section class="content-header">
                 <h1>
                     @ViewBag.Title
                 </h1>
 
-            </section>
+            </section>*@
             <!-- Main content -->
             <section class="content">
                 <!-- Default box -->
                 <div class="box">
                     <div class="box-header with-border">
-
+                        <h3 class="box-title">@ViewBag.Title</h3>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                                 <i class="fa fa-minus"></i>
@@ -199,8 +222,13 @@
     <!-- ./wrapper -->
     <!-- jQuery 2.2.3 -->
     <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="~/plugins/jQueryUI/jquery-ui.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    @*<script src="~/Scripts/jquery.form.js"></script>*@
     <!-- Bootstrap 3.3.6 -->
     <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    @*<script src="~/bootstrap/js/bootstrap.js"></script>*@
     <!-- SlimScroll -->
     <script src="~/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
@@ -209,6 +237,10 @@
     <script src="~/dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/dist/js/demo.js"></script>
+    <!-- Sweet Alerts JS-->
+    <script src="~/Scripts/sweetalert-dev.js"></script>
+
+    @Scripts.Render("~/bundles/jqueryval")
 
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")

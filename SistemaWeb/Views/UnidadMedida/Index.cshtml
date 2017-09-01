@@ -1,11 +1,8 @@
 ﻿@model IEnumerable<BDModel.UnidadMedida>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Measurement units";
 }
-
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -26,7 +23,7 @@
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Activo)
+            @Html.DisplayFor(modelItem => item.Activo.Value)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

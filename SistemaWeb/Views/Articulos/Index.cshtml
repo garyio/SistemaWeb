@@ -4,13 +4,39 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<!-- Button trigger modal -->
+<button type="button" id="btnNuevo" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    New Article
+</button>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<!-- Agregamos el Modal -->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"> @ViewBag.Title</h4>
+                </div>*@
+            <div id="modal-content" class="modal-body">
+                Loading ...
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="btnGuardar" type="button" class="btn btn-primary" onclick="insert(null);">Save changes</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+
 <table class="table">
     <tr>
+        <th>
+            Imagen
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Codigo)
         </th>
@@ -23,9 +49,9 @@
         <th>
             @Html.DisplayNameFor(model => model.PrecioVenta)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Existencia)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.FechaAlta)
         </th>
@@ -36,52 +62,141 @@
             @Html.DisplayNameFor(model => model.Proveedor.NombreFiscal)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Subcategoria.Nombre)
+            SubCategoria
+            @*@Html.DisplayNameFor(model => model.Subcategoria.Nombre)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UnidadMedida.Nombre)
+            UM
+            @*@Html.DisplayNameFor(model => model.UnidadMedida.Nombre)*@
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Codigo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrecioCompra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrecioVenta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Existencia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaAlta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Activo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Proveedor.NombreFiscal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subcategoria.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnidadMedida.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@item.defaultImage" alt="@item.Descripcion" style="width:100px;height:75px;">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioCompra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioVenta)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Existencia)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaAlta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proveedor.NombreFiscal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subcategoria.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnidadMedida.Nombre)
+            </td>
+            <td>
+                <a href="#myModal" class="btnImagenes" data-toggle="modal" data-id="@item.Id"><i class="glyphicon glyphicon-import" title="Importar Imagenes"></i></a>
+                <a href="#myModal" class="btnEdit" data-toggle="modal" data-id="@item.Id"><i class="glyphicon glyphicon-pencil" title="Editar Articulo"></i></a>
+                <a href="#myModal" class="btnDetails" data-toggle="modal" data-id="@item.Id"><i class="glyphicon glyphicon-eye-open" title="Detalles del Articulo"></i></a>
+                <a href="#myModal" class="btnDelete" data-toggle="modal" data-id="@item.Id"><i class="glyphicon glyphicon-trash" title="Borrar Articulo"></i></a>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @id = "btnEdit"} , new { @data_toggle = "modal" }) |*@
+                @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(function () {
+                //allow the validation framework to re-prase the DOM
+                jQuery.validator.unobtrusive.parse();
+                //or to give the parser some context, supply it with a selector
+                //jQuery validator will parse all child elements (deep) starting
+                //from the selector element supplied
+                jQuery.validator.unobtrusive.parse("form");
+                jQuery.validator.unobtrusive.parse(document);
+                //jQuery.validator.unobtrusive.parse(document);
+                @if (TempData["message_UploadFiles_success"] != null)
+                {
+                    <text>
+                        swal(
+                          '@TempData["message_UploadFiles_success"]',
+                          '',
+                          'success'
+                        )
+                    </text>
+                        TempData["message_UploadFiles_success"] = null;
+                }
+
+                @if (TempData["message_UploadFiles_failed"] != null)
+                {
+                    <text>
+                        swal(
+                          '@TempData["message_UploadFiles_failed"]',
+                          '',
+                          'error'
+                        )
+                    </text>
+                    TempData["message_UploadFiles_failed"] = null;
+                }
+
+
+            });
+
+            $('#myModal').on('hidden.bs.modal', function (e) {
+                window.location.reload();
+            })
+
+            $(function () {
+                $('#btnNuevo').click(function () {
+                    $('#modal-content').load('/Articulos/Create')
+                });
+            });
+
+            $(function () {
+                $('.btnImagenes').click(function () {
+                    $('#modal-content').load('/Articulos/UploadFiles/' + $(this).attr("data-id"))
+                });
+            });
+
+            $(function () {
+                $('.btnEdit').click(function () {
+                    $('#modal-content').load('/Articulos/Edit/' + $(this).attr("data-id"));
+                });
+            });
+
+            $(function () {
+                $('.btnDetails').click(function () {
+                    $('#modal-content').load('/Articulos/Details/' + $(this).attr("data-id"));
+                });
+            });
+
+            $(function () {
+                $('.btnDelete').click(function () {
+                    $('#modal-content').load('/Articulos/Delete/' + $(this).attr("data-id"));
+                });
+            });
+
+        });
+    </script>
+}
